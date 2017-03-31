@@ -26,51 +26,51 @@ app.get('/app/heroes', function(req, res) {
   var name = req.query.name;
   if (name) {
     name = name.toLowerCase();
-    var results = _.filter(heroes, function(hero) {
-      return _.includes(hero.name.toLowerCase(), name);
+    var results = _.filter(chidioms, function(hero) {
+      return _.includes(chidiom.name.toLowerCase(), name);
     });
     res.json(results);
   } else {
-    res.json(heroes);
+    res.json(chidioms);
   }
 });
 
-app.post('/app/heroes', function(req, res) {
+app.post('/app/chidioms', function(req, res) {
   var hero = req.body;
-  if (typeof hero.name === "string") {
+  if (typeof chidiom.name === "string") {
     var newId = 1;
     _.forEach(heroes, function(result) {
       newId = Math.max(newId, result.id);
     });
-    res.json({ id: newId, name: hero.name });
+    res.json({ id: newId, name: chidiom.name });
   } else {
     res.sendStatus(400);
   }
 });
 
-app.put('/app/heroes/:id', function(req, res) {
-  const heroId = +req.params.id;
-  var hero = _.find(heroes, function(hero) { return hero.id === heroId; });
-  if (hero) {
-    hero.name = req.body.name;
-    res.json(heroes);
+app.put('/app/chidioms/:id', function(req, res) {
+  const chidiomId = +req.params.id;
+  var hero = _.find(chidioms, function(chidiom) { return chidiom.id === chidiomId; });
+  if (chidiom) {
+    chidiom.name = req.body.name;
+    res.json(chidioms);
   } else {
     res.sendStatus(404);
   }
 });
 
-app.delete('/app/heroes/:id', function(req, res) {
-  const heroId = +req.params.id;
-  var hero = _.find(heroes, function(hero) { return hero.id === heroId; });
-  if (hero) {
-    for(var i = 0; i < heroes.length; i++) {
-      var hero = heroes[i];
-      if (hero.id === heroId) {
-        heroes.splice(i, 1);
+app.delete('/app/chidioms/:id', function(req, res) {
+  const chidiomId = +req.params.id;
+  var chidiom = _.find(chidioms, function(chidiom) { return chidiom.id === chidiomId; });
+  if (chidiom) {
+    for(var i = 0; i < chidioms.length; i++) {
+      var chidiom = chidioms[i];
+      if (chidiom.id === chidiomId) {
+        chidioms.splice(i, 1);
         break;
       }
     }
-    res.json(heroes);
+    res.json(chidioms);
   } else {
     res.sendStatus(404);
   }
