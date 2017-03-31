@@ -22,11 +22,11 @@ var heroes = [
   {id: 20, name: 'Tornado'},
 ];
 
-app.get('/app/heroes', function(req, res) {
+app.get('/app/chidioms', function(req, res) {
   var name = req.query.name;
   if (name) {
     name = name.toLowerCase();
-    var results = _.filter(chidioms, function(hero) {
+    var results = _.filter(chidioms, function(chidiom) {
       return _.includes(chidiom.name.toLowerCase(), name);
     });
     res.json(results);
